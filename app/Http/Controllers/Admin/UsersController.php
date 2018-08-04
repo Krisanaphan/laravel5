@@ -26,14 +26,66 @@ class UsersController extends Controller
         //         // ->take(10)
         //         ->get();
 
-        $mods = UserMod::find([1, 2, 3]);
+        // $mods = UserMod::find([1, 2, 3]);
 
-        foreach ($mods as $item) {
-            echo $item->name." ".$item->surname." ".$item->email."<br />";
-        }
+        // foreach ($mods as $item) {
+        //     echo $item->name." ".$item->surname." ".$item->email."<br />";
+        // }
 
-        $count = UserMod::where('active', 1)->count();
-        echo "Total row: ".$count;
+        // $count = UserMod::where('active', 1)->count();
+        // echo "Total row: ".$count;
+
+        // return view('test');
+
+        // return view('test')->with('name', 'My Name')
+        //                    ->with('email', 'My mail') ;
+
+        // $data = [
+        //     'name' => 'My Name',
+        //     'surname' => 'My SurName',
+        //     'email' => 'myemail@gmail.com'
+        // ];
+
+        // return view('test', $data);
+
+        // $data = [
+        //     'name' => 'My Name',
+        //     'surname' => 'My SurName',
+        //     'email' => 'myemail@gmail.com'
+        // ];
+
+        // $item = [
+        //     'item1' => 'My Value1',
+        //     'item2' => 'My Value2'
+        // ];
+
+        // $results = [
+        //     'data' => $data,
+        //     'item' => $item
+        // ];
+
+        // return view('test', $results);
+
+        // $mods = UserMod::all();
+        // return view('test', compact('mods'));
+
+        // $data = [
+        //    'name' => 'My Name',
+        //    'surname' => 'My SurName',
+        //    'email' => 'myemail@gmail.com'
+        // ];
+
+        // $user = UserMod::find(1);
+        // $mods = UserMod::all();
+
+        // return view('test', compact('data', 'user', 'mods'));
+
+        // return view('admin.layouts.template');
+
+        // return view('admin.user.lists');
+
+        $mods = UserMod::paginate(10);
+        return view('admin.user.lists', compact('mods') );
     }
 
     /**
@@ -105,6 +157,7 @@ class UsersController extends Controller
 
         $product = ProductMod::find($id);
         echo "Product Name is : " .$product->name;
+        echo "<br />";
         echo "Shop Owner is : ".$product->shop->name;
     }
 
